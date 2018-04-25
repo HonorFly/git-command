@@ -6,6 +6,8 @@
        git config --global user.email
 ## 2.初始化 ##
     git init  初始化
+    git add 添加文件
+    git commit -m "提交说明" 文件提交
     git diff  比较文件的改变
     git status  仓库的状态
 ## 3.版本回退 ##
@@ -19,3 +21,10 @@
     git diff --cashed 是暂存区（stage)和仓库分支(master)的比较
     git add 是把要提交的所有修改放到暂存区 
     git commit 是把暂存区的修改提交到仓库分支
+## 5.git commit后面没有写说明的情况 ##
+    直接写git commit 进行提交，没有写提交说明和-m，git bash进入vim模式，处理方法：
+    首先，输入i，进入insert输入模式，此时输入说明；（相当于给一次不就得说明机会）；
+    然后，输入完后，按esc，下方的insert消失；
+    最后，输入:wq,回车。
+
+    
