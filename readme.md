@@ -19,9 +19,9 @@
 ## 4.工作区和暂存区 ##
     git diff 是工作区（work dict）和暂存区（stage）的比较
     git diff --cashed 是暂存区（stage)和仓库分支(master)的比较
+    git diff HEAD -- 文件名 可以查看工作区和仓库分支（版本库）里面最新版本的区别
     git add 是把要提交的所有修改放到暂存区 
     git commit 是把暂存区的修改提交到仓库分支
-    git diff HEAD -- 文件名 可以查看工作区和仓库分支（版本库）里面最新版本的区别
 ## 5.git commit后面没有写说明的情况 ##
     直接写git commit 进行提交，没有写提交说明和-m，git bash进入vim模式，处理方法：
     首先，输入i，进入insert输入模式，此时输入说明；（相当于给一次不就得说明机会）；
