@@ -17,4 +17,5 @@
 ## 4.工作区和暂存区 ##
     git diff 是工作区（work dict）和暂存区（stage）的比较
     git diff --cashed 是暂存区（stage)和仓库分支(master)的比较
-    git add 是把要提交的所有修改放到暂存区 git commit是把暂存区的修改提交到仓库分支
+    git add 是把要提交的所有修改放到暂存区 
+    git commit是把暂存区的修改提交到仓库分支
