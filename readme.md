@@ -38,3 +38,12 @@
       工作区的修改分为两种情况：一种是修改后没被放到暂存区，此时用git checkout -- file 就可以回到和版本库一样的状态；另一种是已经添加到暂存区后，又做了修改，此时git checkout -- file这个命令就回到添加到暂存区后的状态，这时候就要采用第二种情况的方法进行撤销。
 
       git status 查看状态，可以根据下面的提示判断文件是否已在暂存区，当下面出现（use “git reset HEAD <file>..." to unstage）这句话说明修改添加到暂存区，还没有提交；当出现（use "git add <file>..." to update whaat will be committed) (use "git checkout -- <file>..." to discard changes in working directory)时，说明暂存区是干净的，工作区有修改。
+## 8.删除文件 ##
+      通常情况下，没用的文件直接在文本管理器将文件删除，也可以用rm命令删除文件（rm file）；
+      删除文件后，工作区和版本库不一致，git status查看那个文件删除；
+
+      此时，有两种选择情况：
+        1.删错了，版本库还有，直接将误删的文件恢复到最新版本；git checkout -- file 这种情况本质就是版本库的替换工作区的，无论工作区是修改还是删除，都可以一键还原，但只能恢复到版本库的最新文件，不会恢复最近一次提交后修改的内容。
+        2.确实从版本库中删除该文件。用命令git rm删掉，并且git commit提交。文件从版本库被删除。
+
+      rm删除文件和从文件管理器删除文件是一样的,只是将工作区的文件删除,版本库的文件未删除,git rm file是删除版本库的文件。两者是不同的。如果是只删除工作区的文件可以用git checkout -- file，如果是git rm file删除文件，此时将版本库，暂存区和工作区的都删除，此时没有使用git commit命令提交到版本库时，可以使用版本回退或者git checkout HEAD file 或者 git checkout HEAD -- file；如果使用git rm file删除文件，并用git commit提交到版本库时，只能用版本回退恢复。
