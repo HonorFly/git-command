@@ -1,9 +1,9 @@
 # git分布式版本控制系统 #
 ## 1.安装 ##
     1. git官网下载安装程序
-    2. 配置  
-       git config --global user.name 
-       git config --global user.email
+    2. 设置用户名和邮箱(这台机器上的git仓库使用此配置)
+       git config --global user.name "你的name"
+       git config --global user.email "你的email地址"
 ## 2.初始化 ##
     git init  初始化
     git add 添加文件
@@ -47,3 +47,24 @@
         2.确实从版本库中删除该文件。用命令git rm删掉，并且git commit提交。文件从版本库被删除。
 
       rm删除文件和从文件管理器删除文件是一样的,只是将工作区的文件删除,版本库的文件未删除,git rm file是删除版本库的文件。两者是不同的。如果是只删除工作区的文件可以用git checkout -- file，如果是git rm file删除文件，此时将版本库，暂存区和工作区的都删除，此时没有使用git commit命令提交到版本库时，可以使用版本回退或者git checkout HEAD file 或者 git checkout HEAD -- file；如果使用git rm file删除文件，并用git commit提交到版本库时，只能用版本回退恢复。
+## 9.远程仓库 ##
+     1.本地git仓库和GitHub仓库的设置
+       首先，创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有看看目录下有没有id_rsa和id_rsa.pub这两个文件，如果有，直接跳过。如果没有，创建SSH Key：
+       ssh-keygen -t rsa -C "email"
+       然后一路回车。
+       然后，登录github，打开settings，SSH Keys页面，点击add ssh keys，将id_rsa.pub文件的内容粘贴到key的文本框。点击add key。
+       进入主目录：cd ~
+     2.添加远程仓库
+      两个仓库远程同步：
+      首先，github创建一个新的仓库：create a new repository
+      然后，将本地git仓库的内容推送到github仓库：
+      git remote add origin git@github.com:github账户名/learngit.git
+      最后，把本地仓库的内容推送到远程库上：
+      git push -u origin master
+      把master分支推送到远程，第一次推送master分支时，加上-u参数，git把本地的master分支推送到远程新的master分支，还会把本地的master分支和远程的master分支关联起来。
+      以后提交命令：git push origin master
+      关联远程库：git remote add origin git@server-name:path/repo-name.git
+      第一次把分支推送到远程：git push -u origin master
+      修改后推送远程：git push origin master
+     3.从远程库克隆
+      git clone 仓库地址(ssh或https都可以)
