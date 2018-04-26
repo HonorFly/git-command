@@ -68,3 +68,11 @@
       修改后推送远程：git push origin master
      3.从远程库克隆
       git clone 仓库地址(ssh或https都可以)
+## 10.分支管理 ##
+     1.创建分支和合并分支
+      创建分支：git branch <name>
+      切换分支：git checkout <name>
+      创建+切换分支：git checkout -b <name>
+      查看当前分支：git branch
+      合并分支：git merge <name>  (合并指定分支到当前分支)
+      合并后删除分支：git branch -d <name>
