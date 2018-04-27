@@ -114,3 +114,40 @@
       本地创建和远程分支对应的分支：git checkout -b branch-name origin/branch-name
       远程仓库创建分支：git push origin branch-name
       远程仓库删除分支：git push origin :branch-name
+## 11.标签管理 ##
+     1.创建标签
+      创建新标签:git tag <name>
+      创建标签在某一个版本：git tag <name> commit_id
+      创建标签指定信息(带说明):git tag -a <name> -m "说明文字" commit_id 
+                             -a指定标签名    -m 指定说明文字
+      查看标签信息：git show <tagname>
+      <!-- 用PGP签名标签: git tag -s <tagname> -m "说明文字" commit_id -->
+      查看所有标签：git tag
+     2.推送标签到远程
+       推送一个标签到远程：git push origin <tagname>
+       推送所有标签到远程：git push origin --tags
+     3.删除标签
+      未推送到远程之前(删除本地标签):git tag -d <tagname>
+      已推送到远程后：
+         首先，在本地删除：git tag -d <tagname>
+         然后，远程删除：git push origin :refs/tags/<tagname>
+## 12.同时关联码云和GitHub
+     关联码云：git remote add origin git@gitee.com:username/learngit.git
+     git remote add时报错：fatal: remote origin already exists.说明本地库已经关联了一个名叫origin的远程库，此时，可以先用git remote -v查看远程库信息:
+        origin    git@github.com:username/learngit.git (fetch)
+        origin    git@github.com:username/learngit.git (push)
+     本地库已经关联了origin的远程库，并且，该远程库指向GitHub.
+     删除已有的GitHub远程库：git remote rm origin
+     再关联码云的远程库:git remote add origin git@gitee.com:username/learngit.git
+     再查看远程库信息：git remote -v
+     origin    git@gitee.com:username/learngit.git (fetch)
+     origin    git@gitee.com:username/learngit.git (push)
+     origin已经被关联到码云的远程库了。通过git push命令就可以把本地库推送到Gitee上。
+
+     有多个远程库，我们需要用不同的名称来标识不同的远程库:
+     先删除已关联的名为origin的远程库：git remote rm origin
+     先关联GitHub的远程库：git remote add github git@github.com:username/learngit.git
+     再关联码云的远程库：git remote add gitee git@gitee.com:username/learngit.git
+     查看远程库信息:git remote -v
+     推送到GitHub:git push github master
+     推送到码云:git push gitee master
