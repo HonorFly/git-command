@@ -85,3 +85,32 @@
       团队开发过程中，master主分支上基本不写代码，只是合并发布用，团队都是在分支上进行的开发，合并也是合并在分支上，意思是主分支创建一个dev分支，然后在dev分支的基础上再创建每个开发人员的分支，平时开发人员的代码合并主要是合并到dev分支上，等到发布版本时，将代码合并到主分支master，最后提交。
       合并分支时：git merge  <name> 此方法合并时一种fast forward模式，快速模式，这种方法合并后看不出曾经做过合并，删除分支后丢掉分支信息。因此，开发时，合并采用禁用fast forward模式。
       合并dev产生新提交:git merge --no-ff -m "" dev   
+     4.bug分支
+      开发过程中出现修改bug的情况，从dev分支(当前工作分支)，切换到主分支master，在主分支master从新建立一个bug分支，在切换到主分支之前将工作区内容保存一下，不用git add，直接git stash保存当前工作区内容。然后切换到主分支master创建bug分支，解决问题后提交，合并到主分支，将bug分支删除，然后返回dev分支(切换到主分支之前的工作分支)，git stash list查看保存列表，然后恢复工作区内容，git stash apply 然后 git stash drop删除stash内容，或者直接采用git stash pop恢复的同时删除stash内容，再用git stash list查看，stash内容消失。可以多次git stash，恢复时查看列表git stash list，恢复指定的stash(git stash apply stash@[0])。
+
+      修复bug时，通过创建新的bug分支进行修复，然后合并，最后删除；
+      当手头工作没有完成时先把工作现场git stash一下，然后去修复bug，修复后再git stash pop 回到工作现场。
+     5.分支未合并强制删除
+      新功能开发建立一个新的分支：
+      创建+切换分支：git checkout -b <name>
+      开发完提交：git add -> git commit
+      切换分支：git checkout dev
+      未合并分支删除新的分支：git branch -D <name>
+
+      未合并删除的分支就再也找不到。
+     6.多人协作
+      查看远程库：git remote
+      查看远程库信息：git remote -v
+      从本地推送分支：git push origin branch-name
+      本地新建的分支如果不推送到远程，就对其他人不可见；从远程clone时，默认只能看到本地的master分支。如果在dev分支上开发，必须创建远程origin的dev分支到本地，于是创建本地dev分支：
+      git checkout -b dev origin/dev
+      两个人同时推送一个文件提交时，推送失败。此时先抓取分支：git pull
+      然后在本地合并，解决冲突，再推送。
+      git pull失败时，提示“no tracking information”，说明本地分支和远程分支的链接关系没创建，本地和远程关联：
+      git branch --set-upstream-to=origin/<branch> branch-name
+      抓取分支：git pull
+      抓取分支失败,建立本地分支与远程分支的关联：
+      git branch --set-upstream-to=origin/<branch> branch-name
+      本地创建和远程分支对应的分支：git checkout -b branch-name origin/branch-name
+      远程仓库创建分支：git push origin branch-name
+      远程仓库删除分支：git push origin :branch-name
