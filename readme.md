@@ -78,3 +78,4 @@
       合并后删除分支：git branch -d <name>
 
       HEAD指向当前分支，master指向提交分支
+     2.解决冲突
