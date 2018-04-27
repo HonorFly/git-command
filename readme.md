@@ -76,3 +76,5 @@
       查看当前分支：git branch
       合并分支：git merge <name>  (合并指定分支到当前分支)
       合并后删除分支：git branch -d <name>
+
+      HEAD指向当前分支，master指向提交分支
