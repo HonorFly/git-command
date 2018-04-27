@@ -140,8 +140,8 @@
      删除已有的GitHub远程库：git remote rm origin
      再关联码云的远程库:git remote add origin git@gitee.com:username/learngit.git
      再查看远程库信息：git remote -v
-     origin    git@gitee.com:username/learngit.git (fetch)
-     origin    git@gitee.com:username/learngit.git (push)
+        origin    git@gitee.com:username/learngit.git (fetch)
+        origin    git@gitee.com:username/learngit.git (push)
      origin已经被关联到码云的远程库了。通过git push命令就可以把本地库推送到Gitee上。
 
      有多个远程库，我们需要用不同的名称来标识不同的远程库:
